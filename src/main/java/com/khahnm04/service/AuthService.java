@@ -7,6 +7,6 @@ import com.khahnm04.payload.response.AuthResponse;
 public interface AuthService {
 
     AuthResponse signup(UserDTO userDTO) throws UserException;
-    AuthResponse login(UserDTO userDTO);
+    AuthResponse login(UserDTO userDTO) throws UserException;
 
 }

@@ -8,6 +8,6 @@ public class AuthResponse {
 
     private String jwt;
     private String message;
-    private UserDTO userDTO;
+    private UserDTO user;
 
 }
