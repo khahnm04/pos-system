@@ -12,8 +12,8 @@ public class UserMapper {
         userDTO.setEmail(user.getEmail());
         userDTO.setPhone(user.getPhone());
         userDTO.setRole(user.getRole());
-        userDTO.setCreateAt(user.getCreateAt());
-        userDTO.setUpdateAt(user.getUpdateAt());
+        userDTO.setCreatedAt(user.getCreatedAt());
+        userDTO.setUpdatedAt(user.getUpdatedAt());
         userDTO.setLastLogin(user.getLastLogin());
         return userDTO;
     }

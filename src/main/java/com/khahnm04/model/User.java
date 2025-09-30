@@ -28,15 +28,18 @@ public class User {
 
     private String phone;
 
+    @ManyToOne
+    private Store store;
+
     @Column(nullable = false)
     private UserRole role;
 
     @Column(nullable = false)
     private String password;
 
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
-    private LocalDateTime updateAt;
+    private LocalDateTime updatedAt;
 
     private LocalDateTime lastLogin;
 
