@@ -17,7 +17,7 @@ public class ProductDTO {
     private Double sellingPrice;
     private String brand;
     private String image;
-    //private Category category;
+    private CategoryDTO category;
     private Long categoryId;
     private Long storeId;
     private LocalDateTime createdAt;

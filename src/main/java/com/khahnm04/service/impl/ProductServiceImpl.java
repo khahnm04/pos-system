@@ -1,10 +1,12 @@
 package com.khahnm04.service.impl;
 
 import com.khahnm04.mapper.ProductMapper;
+import com.khahnm04.model.Category;
 import com.khahnm04.model.Product;
 import com.khahnm04.model.Store;
 import com.khahnm04.model.User;
 import com.khahnm04.payload.dto.ProductDTO;
+import com.khahnm04.repository.CategoryRepository;
 import com.khahnm04.repository.ProductRepository;
 import com.khahnm04.repository.StoreRepository;
 import com.khahnm04.service.ProductService;
@@ -20,12 +22,17 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final StoreRepository storeRepository;
+    private final CategoryRepository categoryRepository;
 
     @Override
     public ProductDTO createProduct(ProductDTO productDTO, User user) throws Exception {
         Store store = storeRepository.findById(productDTO.getStoreId())
                 .orElseThrow(() -> new Exception("Store not found"));
-        Product product = ProductMapper.toEntity(productDTO, store);
+
+        Category category = categoryRepository.findById(productDTO.getCategoryId())
+                .orElseThrow(() -> new Exception("Category not found"));
+
+        Product product = ProductMapper.toEntity(productDTO, store, category);
         Product savedProduct = productRepository.save(product);
         return ProductMapper.toDTO(savedProduct);
     }
@@ -44,6 +51,12 @@ public class ProductServiceImpl implements ProductService {
         product.setBrand(product.getBrand());
         product.setUpdatedAt(LocalDateTime.now());
         product.setCreatedAt(LocalDateTime.now());
+
+        if (productDTO.getCategoryId() != null) {
+            Category category = categoryRepository.findById(productDTO.getCategoryId())
+                    .orElseThrow(() -> new Exception("Category not found"));
+            product.setCategory(category);
+        }
 
         Product savedProduct = productRepository.save(product);
         return ProductMapper.toDTO(savedProduct);

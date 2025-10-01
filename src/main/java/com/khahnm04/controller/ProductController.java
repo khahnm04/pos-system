@@ -7,11 +7,10 @@ import com.khahnm04.service.ProductService;
 import com.khahnm04.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@Service
+@RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor
 public class ProductController {
